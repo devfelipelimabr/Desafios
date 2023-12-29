@@ -99,6 +99,4 @@ function TapTranslation(data) {
   return translate;
 }
 
-console.log(TapTranslation("ABCDEFGHIJKLMNOPQRSTUVWXYZ-@#$%&+*/?"));
-console.log(TapTranslation(" "));
-console.log(TapTranslation(". . . .. . ... . .... . ..... . ...... .. . .. .. .. ... .. .... .. ..... .. ...... ... . ... .. ... ... ... .... ... ..... ... ...... .... . .... .. .... ... .... .... .... ..... .... ...... ..... . ..... .. ..... ... ..... .... ..... ..... ..... ...... ...... . ...... .. ...... ... ...... .... ...... ..... ...... ......"));
+module.exports = TapTranslation;
