@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ciclo Chinês Sexagenário</title>
+    <title>Chinese Sexagenary Cycle</title>
+    <style>
+      /* Estilos CSS para o tema escuro */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #1f1f1f;
+        color: #fff;
+      }
+      input[type="number"] {
+        width: 200px;
+        padding: 8px;
+        margin-right: 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+      }
+      button {
+        padding: 8px 20px;
+        cursor: pointer;
+        background-color: #333;
+        color: #fff;
+        border: none;
+      }
+      #result {
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+      #year {
+        font-style: italic;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Chinese Sexagenary Cycle</h1>
+    <p>Enter a year to find out the last element of the sexagenary cycle:</p>
+    <input
+      type="number"
+      id="yearInput"
+      name="year"
+      placeholder="Enter year"
+      required
+    />
+    <button onclick="calculateCycle()">Calculate</button>
+    <p>
+      The last element of the sexagenary cycle for the year
+      <span id="year"></span> is: <span id="result"></span>
+    </p>
+
+    <script src="sexageraryCycle.js"></script>
+    <script>
+      function calculateCycle() {
+        const year = parseInt(document.getElementById("yearInput").value);
+        const resultElement = document.getElementById("result");
+        const yearElement = document.getElementById("year");
+        if (!year) {
+          return alert("Enter a year beteween -2635 and 5000");
+        }
+        try {
+          const lastComb = SexagenaryChineseCycle(year);
+          resultElement.innerText = lastComb.join(" - ");
+          yearElement.innerText = year;
+        } catch (error) {
+          resultElement.innerText = error.message;
+        }
+      }
+    </script>
+  </body>
+</html>
