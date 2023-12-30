@@ -1,23 +1,23 @@
-const PalindrimeVerify = require("./palindrimeVerify");
+const PalindromeVerify = require("./palindromeVerify");
 
-describe("PalindrimeVerify function", () => {
+describe("PalindromeVerify function", () => {
   test("Identifies a palindrome correctly", () => {
-    expect(PalindrimeVerify("A man, a plan, a canal, Panama")).toBe(true);
+    expect(PalindromeVerify("A man, a plan, a canal, Panama")).toBe(true);
   });
 
   test("Identifies a non-palindrome correctly", () => {
-    expect(PalindrimeVerify("Hello world")).toBe(false);
+    expect(PalindromeVerify("Hello world")).toBe(false);
   });
 
   test("Empty input should throw an error", () => {
     expect(() => {
-      PalindrimeVerify("");
+      PalindromeVerify("");
     }).toThrow("Valor inserido inválido.");
   });
 
   test("Non-string input should throw an error", () => {
     expect(() => {
-      PalindrimeVerify(12345);
+      PalindromeVerify(12345);
     }).toThrow("Valor inserido inválido.");
   });
 });

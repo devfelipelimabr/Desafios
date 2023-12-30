@@ -1,4 +1,4 @@
-function PalindrimeVerify(str) {
+function PalindromeVerify(str) {
   if (!str || typeof str !== "string") {
     throw new Error("Valor inserido inválido.");
   }
@@ -29,4 +29,4 @@ function reverseSentence(sentence) {
   return sentence.split("").reverse().join("");
 }
 
-module.exports = PalindrimeVerify
+module.exports = PalindromeVerify
