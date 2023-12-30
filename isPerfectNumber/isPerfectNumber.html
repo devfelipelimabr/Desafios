@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Perfect Number Checker</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            padding-top: 50px;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Perfect Number Checker</h1>
+        <div class="form-group">
+            <label for="number">Number:</label>
+            <input type="number" class="form-control" id="number" min="1" step="1">
+        </div>
+        <button class="btn btn-primary" onclick="checkPerfectNumber()">Check Number</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="isPerfectNumber.js"></script>
+    <script>
+        function checkPerfectNumber() {
+            const number = parseInt(document.getElementById('number').value);
+
+            try {
+                const isPerfect = IsPerfectNumber(number);
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = isPerfect ? 'It is a perfect number!' : 'It is not a perfect number.';
+                resultDiv.classList.add('text-success'); // Adds a green color to the result
+            } catch (error) {
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = error.message;
+                resultDiv.classList.add('text-danger'); // Adds a red color to the error
+            }
+        }       
+    </script>
+</body>
+
+</html>
