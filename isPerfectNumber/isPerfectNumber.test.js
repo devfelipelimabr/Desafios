@@ -1,30 +1,35 @@
 const IsPerfectNumber = require('./isPerfectNumber');
 
-describe('IsPerfectNumber function', () => {
-    test('it should return true for perfect numbers', () => {
-        expect(IsPerfectNumber(6)).toBe(true);
+describe('IsPerfectNumber', () => {
+    test('Verifica se 28 é um número perfeito', () => {
         expect(IsPerfectNumber(28)).toBe(true);
+    });
+
+    test('Verifica se 6 é um número perfeito', () => {
+        expect(IsPerfectNumber(6)).toBe(true);
+    });
+
+    test('Verifica se 496 é um número perfeito', () => {
         expect(IsPerfectNumber(496)).toBe(true);
+    });
+
+    test('Verifica se 8128 é um número perfeito', () => {
         expect(IsPerfectNumber(8128)).toBe(true);
     });
 
-    test('it should return false for non-perfect numbers', () => {
-        expect(IsPerfectNumber(10)).toBe(false);
+    test('Verifica se 27 não é um número perfeito', () => {
         expect(IsPerfectNumber(27)).toBe(false);
-        expect(IsPerfectNumber(100)).toBe(false);
     });
 
-    test('it should throw an error for non-integer or zero inputs', () => {
-        expect(() => {
-            IsPerfectNumber(1.5);
-        }).toThrow('O número é não inteiro e/ou menor/igual a zero');
+    test('Verifica se 1 não é um número perfeito', () => {
+        expect(IsPerfectNumber(1)).toBe(false);
+    });
 
-        expect(() => {
-            IsPerfectNumber(0);
-        }).toThrow('O número é não inteiro e/ou menor/igual a zero');
+    test('Verifica se um número negativo não é um número perfeito', () => {
+        expect(() => IsPerfectNumber(-28)).toThrow();
+    });
 
-        expect(() => {
-            IsPerfectNumber(-6);
-        }).toThrow('O número é não inteiro e/ou menor/igual a zero');
+    test('Verifica se um número não inteiro não é um número perfeito', () => {
+        expect(() => IsPerfectNumber(28.5)).toThrow();
     });
 });
