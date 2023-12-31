@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Median Calculator</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Estilos personalizados -->
+    <style>
+      body {
+        background-color: #333;
+        color: #fff;
+        padding-top: 50px;
+      }
+
+      .container {
+        margin-top: 50px;
+      }
+
+      .result {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Median Calculator</h1>
+      <div class="form-group">
+        <label for="array1">Array 1:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="array1"
+          placeholder="Enter comma-separated values"
+        />
+      </div>
+      <div class="form-group">
+        <label for="array2">Array 2:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="array2"
+          placeholder="Enter comma-separated values"
+        />
+      </div>
+      <button class="btn btn-primary" onclick="calculateMedian()">
+        Calculate Median
+      </button>
+      <div class="result" id="result"></div>
+    </div>
+
+    <!-- jQuery e Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="medianCalc.js"></script>
+    <script>
+      function calculateMedian() {
+        const array1 = document
+          .getElementById("array1")
+          .value.split(",")
+          .map(Number);
+        const array2 = document
+          .getElementById("array2")
+          .value.split(",")
+          .map(Number);
+
+        try {
+          const median = MedianCalc(array1, array2);
+          const resultDiv = document.getElementById("result");
+          resultDiv.innerHTML = `The median is: ${median}`;
+          resultDiv.classList.add("text-success"); // Adiciona uma cor verde ao resultado
+        } catch (error) {
+          const resultDiv = document.getElementById("result");
+          resultDiv.innerHTML = error.message;
+          resultDiv.classList.add("text-danger"); // Adiciona uma cor vermelha ao erro
+        }
+      }
+
+      MedianCalc(arr1, arr2);
+    </script>
+  </body>
+</html>
