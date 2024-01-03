@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Fibonacci Sequence Generator</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            padding-top: 50px;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Fibonacci Sequence Generator</h1>
+        <div class="form-group">
+            <label for="qtyInput">Enter the quantity of numbers:</label>
+            <input type="number" class="form-control" id="qtyInput" min="1" max="1000" placeholder="Enter a number" required>
+        </div>
+        <button class="btn btn-primary" onclick="generateFibonacciSequence()">Generate Sequence</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="fibonacciSequence.js"></script>
+    <script>
+        function generateFibonacciSequence() {
+            const qty = parseInt(document.getElementById('qtyInput').value);
+            const resultDiv = document.getElementById('result');
+
+            try {
+                const sequence = FibonacciSequence(qty);
+                resultDiv.innerHTML = `Fibonacci sequence: ${sequence.join(', ')}`;
+                resultDiv.classList.add('text-success');
+            } catch (error) {
+                resultDiv.innerHTML = error.message;
+                resultDiv.classList.add('text-danger');
+            }
+        }
+    </script>
+</body>
+
+</html>
