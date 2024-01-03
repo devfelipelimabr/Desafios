@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Unique Element Finder</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            padding-top: 50px;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Unique Element Finder</h1>
+        <div class="form-group">
+            <label for="arrayInput">Enter an array or a sentence:</label>
+            <input type="text" class="form-control" id="arrayInput" placeholder="Separate elements by space">
+        </div>
+        <button class="btn btn-primary" onclick="findUniqueElements()">Find Unique Elements</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="uniqueElement.js"></script>
+    <script>
+        function findUniqueElements() {
+            const userInput = document.getElementById('arrayInput').value.trim();
+            const resultDiv = document.getElementById('result');
+
+            try {
+                const uniqueElements = UniqueElement(userInput);
+                resultDiv.innerHTML = `Unique elements: ${uniqueElements.join(', ')}`;
+                resultDiv.classList.add('text-success');
+            } catch (error) {
+                resultDiv.innerHTML = error.message;
+                resultDiv.classList.add('text-danger');
+            }
+        }
+    </script>
+</body>
+
+</html>
