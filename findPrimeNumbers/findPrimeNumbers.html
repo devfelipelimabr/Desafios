@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prime Number Finder</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            padding-top: 50px;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Prime Number Finder</h1>
+        <div class="form-group">
+            <label for="start">Start:</label>
+            <input type="number" class="form-control" id="start" min="1">
+        </div>
+        <div class="form-group">
+            <label for="end">End:</label>
+            <input type="number" class="form-control" id="end" min="1">
+        </div>
+        <button class="btn btn-primary" onclick="findPrimes()">Find Prime Numbers</button>
+        <div class="result" id="result"></div>
+        <div class="text-center" id="moreButtonContainer" style="display: none;">
+            <button class="btn btn-secondary" id="moreButton">More</button>
+        </div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="findPrimeNumbers.js"></script>
+    <script>
+        let currentPage = 1;
+        const itemsPerPage = 100;
+        let primes = []; // Array de números primos
+        let displayCount = 0; // Contador de resultados exibidos
+
+        function findPrimes() {
+            const start = parseInt(document.getElementById('start').value);
+            const end = parseInt(document.getElementById('end').value);
+
+            try {
+                primes = FindPrimeNumbers(start, end);
+                displayResults();
+                displayMoreButton();
+            } catch (error) {
+                const resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = error.message;
+                resultDiv.classList.add('text-danger');
+                document.getElementById('moreButtonContainer').style.display = 'none'; // Oculta o botão "More" em caso de erro
+            }
+        }
+
+        function displayResults() {
+            const resultDiv = document.getElementById('result');
+            const currentResults = primes.slice(0, displayCount + itemsPerPage);
+            displayCount += itemsPerPage;
+            resultDiv.innerHTML = `Prime numbers in the range: ${currentResults.join(', ')}`;
+            resultDiv.classList.add('text-success');
+        }
+
+        function displayMoreButton() {
+            const moreButtonContainer = document.getElementById('moreButtonContainer');
+            const moreButton = document.getElementById('moreButton');
+
+            if (displayCount >= primes.length) {
+                moreButtonContainer.style.display = 'none'; // Oculta o botão "More" se todos os resultados já foram exibidos
+            } else {
+                moreButton.addEventListener('click', displayResults);
+                moreButtonContainer.style.display = 'block'; // Exibe o botão "More"
+            }
+        }
+    </script>
+</body>
+
+</html>
