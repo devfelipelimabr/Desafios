@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Unique Numbers Sum Calculator</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom Styles -->
+    <style>
+      body {
+        background-color: #333;
+        color: #fff;
+        padding-top: 50px;
+      }
+
+      .container {
+        margin-top: 50px;
+      }
+
+      .result {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Unique Numbers Sum Calculator</h1>
+      <div class="form-group">
+        <label for="arrayInput">Enter an array of numbers:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="arrayInput"
+          placeholder="Enter numbers separated by space"
+        />
+      </div>
+      <button class="btn btn-primary" onclick="calculateUniqueNumbersSum()">
+        Calculate Sum
+      </button>
+      <div class="result" id="result"></div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="sumUniqueNumbers.js"></script>
+    <script>
+      function calculateUniqueNumbersSum() {
+        const userInput = document
+          .getElementById("arrayInput")
+          .value.split(" ");
+        const resultDiv = document.getElementById("result");
+
+        let userInputNum = [];
+
+        for (let i = 0; i < userInput.length; i++) {
+          userInputNum.push(parseInt(userInput[i]));
+        }
+
+        try {
+          const arrays = SumUniqueNumbers(userInputNum);
+          const { initialArr, orderedArr, uniqueNumsArr, sumUniqueNums } =
+            arrays;
+
+          resultDiv.innerHTML = `
+                    <p>Initial Array: [${initialArr}]</p>
+                    <p>Ordered Array: [${orderedArr}]</p>
+                    <p>Unique Numbers Array: [${uniqueNumsArr}]</p>
+                    <p>Sum of Unique Numbers: ${sumUniqueNums}</p>
+                `;
+          resultDiv.classList.add("text-success");
+        } catch (error) {
+          resultDiv.innerHTML = error.message;
+          resultDiv.classList.add("text-danger");
+        }
+      }
+    </script>
+  </body>
+</html>
