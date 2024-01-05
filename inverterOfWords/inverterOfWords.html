@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Words Inverter</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            padding-top: 50px;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+        #inverted{
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Words Inverter</h1>
+        <div class="form-group">
+            <label for="strInput">Enter a string:</label>
+            <input type="text" class="form-control" id="strInput" placeholder="Enter a sentence" oninput="toggleButton()">
+        </div>
+        <button class="btn btn-primary" id="invertButton" style="display: none;" onclick="invertWords()">Invert Words</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <!-- jQuery and Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="inverterOfWords.js"></script>
+    <script>
+        function toggleButton() {
+            const inputValue = document.getElementById('strInput').value.trim();
+            const invertButton = document.getElementById('invertButton');
+            invertButton.style.display = inputValue ? 'block' : 'none';
+        }
+
+        function invertWords() {
+            const userInput = document.getElementById('strInput').value.trim();
+            const resultDiv = document.getElementById('result');
+
+            try {
+                const invertedWords = InverterOfWords(userInput);
+                resultDiv.innerHTML = `Inverted words:<br> <span id='inverted'>${invertedWords}</span>`;
+                resultDiv.classList.add('text-success');
+            } catch (error) {
+                resultDiv.innerHTML = error.message;
+                resultDiv.classList.add('text-danger');
+            }
+        }       
+    </script>
+</body>
+
+</html>
